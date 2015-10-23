@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>autoTest</title>
+    <link rel="stylesheet" href="autoTest.css">
+    <script src="../src/esl-runtime.js"></script>
+    <script>
+        require.config({
+            'config': {
+                'configTest/mod1': {
+                    'color': 'red'
+                },
+                'configTest/mod2': {
+                    'color': 'green'
+                }
+            },
+            'map': {
+                '*': {
+                    'te': 'mapTest/mapstar'
+                },
+                'mapTest/mod3': {
+                    'te': 'mapTest/map'
+                }
+            }
+        });
+        require.config({
+            'map': {
+                'mapTest/mod2': {
+                    'te': 'mapTest/moremap'
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <ol id="testList">
+        <li data-test-entry="configTest">configTest</li>
+        <li data-test-entry="defineTest">defineTest</li>
+        <li data-test-entry="globalRequireTest">globalRequireTest</li>
+        <li data-test-entry="localRequireTest">localRequireTest</li>
+        <li data-test-entry="mapTest">mapTest</li>
+        <li data-test-entry="circleTest">circleTest</li>
+        <li data-test-entry="pluginTest">pluginTest</li>
+    </ol>
+    <script src="./circleTest.js"></script>
+    <script src="./configTest.js"></script>
+    <script src="./defineTest.js"></script>
+    <script src="./globalRequireTest.js"></script>
+    <script src="./localRequireTest.js"></script>
+    <script src="./mapTest.js"></script>
+    <script src="./pluginTest.js"></script>
+
+    <script>
+        (function () {
+            var lis = document.getElementById('testList').getElementsByTagName('li');
+            var len = lis.length;
+            for (var i = 0; i < len; i++) {
+                var li = lis[i];
+                var testFunc = window[li.getAttribute('data-test-entry')];
+                testFunc(li);
+            }
+        })();
+    </script>
+</body>
+</html>

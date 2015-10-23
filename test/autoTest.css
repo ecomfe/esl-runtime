@@ -1,0 +1,18 @@
+#testList {
+    list-style: none;
+}
+
+#testList li {
+    background: #808080;
+    width: 200px;
+    margin: 5px;
+    padding: 10px;
+}
+
+#testList .fail {
+    background: #F00;
+}
+
+#testList .pass {
+    background: #008000;
+}

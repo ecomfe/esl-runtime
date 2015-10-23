@@ -1,0 +1,9 @@
+{
+    "name": "esl-runtime",
+    "version": "0.0.1",
+    "description": "esl-runtime是一个简化版的esl,不支持动态加载，仅支持map、plugin、config配置",
+    "contributors": [
+        { "name": "dengxiaohong", "email": "xiaohong8023@outlook.com" }
+    ],
+    "repository": "git://github.com/ecomfe/esl-runtime"
+}

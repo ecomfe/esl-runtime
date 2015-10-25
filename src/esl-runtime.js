@@ -150,42 +150,32 @@ var require;
      * @return {string} 绝对id
      */
     function relative2absolute(id, baseId) {
-        if (id.indexOf('.') === 0) {
-            var basePath = baseId.split('/');
-            var namePath = id.split('/');
-            var baseLen = basePath.length - 1;
-            var nameLen = namePath.length;
-            var cutBaseTerms = 0;
-            var cutNameTerms = 0;
-
-            /* eslint-disable block-scoped-var */
-            pathLoop: for (var i = 0; i < nameLen; i++) {
-                switch (namePath[i]) {
-                    case '..':
-                        if (cutBaseTerms < baseLen) {
-                            cutBaseTerms++;
-                            cutNameTerms++;
-                        }
-                        else {
-                            break pathLoop;
-                        }
-                        break;
-                    case '.':
-                        cutNameTerms++;
-                        break;
-                    default:
-                        break pathLoop;
-                }
-            }
-            /* eslint-enable block-scoped-var */
-
-            basePath.length = baseLen - cutBaseTerms;
-            namePath = namePath.slice(cutNameTerms);
-
-            return basePath.concat(namePath).join('/');
+        if (id.indexOf('.') !== 0) {
+            return id;
         }
 
-        return id;
+        var segs = baseId.split('/').slice(0, -1).concat(id.split('/'));
+        var res = [];
+        for (var i = 0; i < segs.length; i++) {
+            var seg = segs[i];
+
+            switch (seg) {
+                case '.':
+                    break;
+                case '..':
+                    if (res.length && res[res.length - 1] !== '..') {
+                        res.pop();
+                    }
+                    else { // allow above root
+                        res.push(seg);
+                    }
+                    break;
+                default:
+                    seg && res.push(seg);
+            }
+        }
+
+        return res.join('/');
     }
 
     /**

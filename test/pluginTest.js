@@ -7,7 +7,7 @@ define('pluginTest/plugin', ['require', 'exports', 'module'], function (require,
     return {
         normalize: function (name, normalize) {
             var parts = name.split('/');
-            return normalize(parts[parts.length-1]);
+            return normalize(parts[parts.length - 1]);
         },
 
         load: function (name, require, load, config) {

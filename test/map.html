@@ -3,88 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="">
     <script src="../src/esl-runtime.js"></script>
 </head>
 <body>
     <script>
-
-        require.config({
-            'map': {
-                'a/b': {
-                    'ff': 'm1'
-                }
+    require.config({
+        'map': {
+            'a/b': {
+                'ff': 'm1'
             }
-        });
-        define('ff/a', [], function () {
-            return {
-                name: 'ff/a',
-                getTeName: function () {
-                    return this.name;
-                }
-            };
-        });
-        define('m1/a', [], function () {
-            return {
-                name: 'm1/a',
-                getTeName: function () {
-                    return this.name;
-                }
-            };
-        });
-        define('m1', [], function () {
-            return {
-                name: 'm1',
-                getTeName: function () {
-                    return this.name;
-                }
-            };
-        });
-        define('ff', [], function () {
-            return {
-                name: 'ff',
-                getTeName: function () {
-                    return this.name;
-                }
-            };
-        });
+        }
+    });
+    define('ff/a', [], function () {
+        return {
+            name: 'ff/a',
+            getTeName: function () {
+                return this.name;
+            }
+        };
+    });
+    define('m1/a', [], function () {
+        return {
+            name: 'm1/a',
+            getTeName: function () {
+                return this.name;
+            }
+        };
+    });
+    define('m1', [], function () {
+        return {
+            name: 'm1',
+            getTeName: function () {
+                return this.name;
+            }
+        };
+    });
+    define('ff', [], function () {
+        return {
+            name: 'ff',
+            getTeName: function () {
+                return this.name;
+            }
+        };
+    });
 
-        define('a/b/ddd/tt', ['require'], function (require) {
-            return {
-                name: 'mod3',
-                getTeName: function () {
-                    return require('ff').name;
-                }
-            };
-        });
+    define('a/b/ddd/tt', ['require'], function (require) {
+        return {
+            name: 'mod3',
+            getTeName: function () {
+                return require('ff').name;
+            }
+        };
+    });
 
-        define('a/b/c', ['require'], function (require) {
-            return {
-                name: 'mod3',
-                getTeName: function () {
-                    return require('ff/a').name;
-                }
-            };
-        });
+    define('a/b/c', ['require'], function (require) {
+        return {
+            name: 'mod3',
+            getTeName: function () {
+                return require('ff/a').name;
+            }
+        };
+    });
 
-        define('a/b/d', ['require'], function (require) {
-            return {
-                name: 'mod3',
-                getTeName: function () {
-                    return require('ff/a').name;
-                }
-            };
-        });
+    define('a/b/d', ['require'], function (require) {
+        return {
+            name: 'mod3',
+            getTeName: function () {
+                return require('ff/a').name;
+            }
+        };
+    });
 
-        define('a/b/e', ['require'], function (require) {
-            return {
-                name: 'mod3',
-                getTeName: function () {
-                    return require('ff/a').name;
-                }
-            };
-        });
+    define('a/b/e', ['require'], function (require) {
+        return {
+            name: 'mod3',
+            getTeName: function () {
+                return require('ff/a').name;
+            }
+        };
+    });
 
-        require(
+    require(
         [
             'a/b/ddd/tt',
             'a/b/c',
@@ -92,10 +93,10 @@
             'a/b/e'
         ],
         function (m1, m2, m3, m4) {
-           console.log(m1.getTeName(), 'a/b/ddd/tt     ');
-           console.log(m2.getTeName(), 'a/b/c   ');
-           console.log(m3.getTeName(), 'a/b/d   ');
-           console.log(m4.getTeName(), 'a/b/e   ');
+            console.log(m1.getTeName(), 'a/b/ddd/tt     ');
+            console.log(m2.getTeName(), 'a/b/c   ');
+            console.log(m3.getTeName(), 'a/b/d   ');
+            console.log(m4.getTeName(), 'a/b/e   ');
         }
     );
     </script>

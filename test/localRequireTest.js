@@ -28,7 +28,8 @@ function localRequireTest1(li) {
         if (m4.name === 'mod4'
             && m4.mod1Name === 'mod1'
             && m4.mod2Name === 'mod2') {
-                li.className = 'pass';
+
+            li.className = 'pass';
         }
         else {
             li.className = 'fail';
@@ -62,7 +63,8 @@ function localRequireTest2(li) {
         if (ch4.name === 'child4'
             && ch4.child1Name === 'child1'
             && ch4.child2Name === 'child2') {
-                li.className = 'pass';
+
+            li.className = 'pass';
         }
         else {
             li.className = 'fail';

@@ -3,7 +3,7 @@
  * @author dengxiaohong01
  */
 
- define('defineTest/mod1', [], function () {
+define('defineTest/mod1', [], function () {
     return {
         name: 'mod1'
     };

@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>autoTest</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="">
     <link rel="stylesheet" href="autoTest.css">
     <script src="../src/esl-runtime.js"></script>
     <script>
-        require.config({
-            'config': {
-                'configTest/mod1': {
-                    'color': 'red'
-                },
-                'configTest/mod2': {
-                    'color': 'green'
-                }
+    require.config({
+        'config': {
+            'configTest/mod1': {
+                'color': 'red'
             },
-            'map': {
-                '*': {
-                    'te': 'mapTest/mapstar'
-                },
-                'mapTest/mod3': {
-                    'te': 'mapTest/map'
-                }
+            'configTest/mod2': {
+                'color': 'green'
             }
-        });
-        require.config({
-            'map': {
-                'mapTest/mod2': {
-                    'te': 'mapTest/moremap'
-                }
+        },
+        'map': {
+            '*': {
+                'te': 'mapTest/mapstar'
+            },
+            'mapTest/mod3': {
+                'te': 'mapTest/map'
             }
-        });
+        }
+    });
+    require.config({
+        'map': {
+            'mapTest/mod2': {
+                'te': 'mapTest/moremap'
+            }
+        }
+    });
     </script>
 </head>
 <body>
@@ -52,15 +54,15 @@
     <script src="./pluginTest.js"></script>
 
     <script>
-        (function () {
-            var lis = document.getElementById('testList').getElementsByTagName('li');
-            var len = lis.length;
-            for (var i = 0; i < len; i++) {
-                var li = lis[i];
-                var testFunc = window[li.getAttribute('data-test-entry')];
-                testFunc(li);
-            }
-        })();
+    (function () {
+        var lis = document.getElementById('testList').getElementsByTagName('li');
+        var len = lis.length;
+        for (var i = 0; i < len; i++) {
+            var li = lis[i];
+            var testFunc = window[li.getAttribute('data-test-entry')];
+            testFunc(li);
+        }
+    })();
     </script>
 </body>
 </html>

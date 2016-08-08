@@ -70,7 +70,7 @@ function mapTest(li) {
                 && m2.getTeName() === 'moremap'
                 && m3.getTeName() === 'map'
                 && m4.getTeName() === 'map') {
-                    li.className = 'pass';
+                li.className = 'pass';
             }
             else {
                 li.className = 'fail';
@@ -78,3 +78,4 @@ function mapTest(li) {
         }
     );
 }
+

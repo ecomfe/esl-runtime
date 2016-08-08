@@ -9,12 +9,21 @@ var define;
 var require;
 
 (function (global) {
+
+    // mod缓存
     var mods = {};
 
     var config = {
-        config: {}, // 相应的模块调用module.config(), 获取信息
-        map: {} // 对于给定的模块前缀，使用一个不同的模块ID来加载该模块
+
+        // 相应的模块调用module.config(), 获取信息
+        config: {},
+
+        // 对于给定的模块前缀，使用一个不同的模块ID来加载该模块
+        map: {}
     };
+
+    // map映射索引结果
+    var mapIdIndex = [];
 
     /**
      * 定义模块
@@ -107,6 +116,7 @@ var require;
         // 如果有plugin!resource的话，对resource进行normalize
         if (resourceId) {
             var mod = require(moduleId);
+
             // 有自定义的normalize用自定义的
             resourceId = mod && mod.normalize
                 ? mod.normalize(
@@ -166,7 +176,7 @@ var require;
                     if (res.length && res[res.length - 1] !== '..') {
                         res.pop();
                     }
-                    else { // allow above root
+                    else {
                         res.push(seg);
                     }
                     break;
@@ -187,13 +197,6 @@ var require;
      * @return {string} mapped moduleId
      */
     function mappingModuleId(moduleId, baseId) {
-        // 将config.map中的key 按照长度排序 生成元素为对象的数组
-        var mapIdIndex = objToKvregArr(config.map).sort(descSorterByKOrName);
-        // 将config.map中每一项的value 成按长度 生产各项元素为对象的数据
-        each(mapIdIndex, function (item) {
-                item.v = objToKvregArr(item.v).sort(descSorterByKOrName);
-            }
-        );
 
         indexRetrieve(
             baseId,
@@ -338,6 +341,16 @@ var require;
                     }
                 }
             }
+
+            // 每次有更新才升级
+            // 将config.map中的key 按照长度排序 生成元素为对象的数组
+            mapIdIndex = objToKvregArr(config.map).sort(descSorterByKOrName);
+
+            // 将config.map中每一项的value 成按长度 生产各项元素为对象的数据
+            each(mapIdIndex, function (item) {
+                    item.v = objToKvregArr(item.v).sort(descSorterByKOrName);
+                }
+            );
         }
     };
 
@@ -446,6 +459,7 @@ var require;
         mods[pluginAndResource] = resource;
         load(require(idInfo.mod));
         return resource.exports;
+
         /**
          * 加载插件资源
          *
